@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <!-- Подключаем Bootstrap для красоты -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4">🛡️ {{ title }}</h1>
+            <p class="lead">Контрольная работа. Паттерн «Централизованный контроль доступа»</p>
+            <hr>
+            <p class="text-muted">Выполнила: Маслова М.Б.</p>
+        </div>
+
+        <div class="row">
+            {% for device in devices %}
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm border-{{ device.color }}">
+                    <div class="card-header bg-{{ device.color }} text-white">
+                        <h5 class="card-title mb-0">{{ device.name }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <strong>IP-адрес:</strong> {{ device.ip }}<br>
+                            <strong>Статус:</strong> 
+                            <span class="badge bg-{{ device.color }}">
+                                {{ device.status }}
+                            </span><br>
+                            <strong>Текущая политика:</strong> <code>{{ device.policy }}</code><br>
+                            <strong>Последний аудит:</strong> {{ device.last_audit }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <footer class="text-center mt-5 text-muted">
+            <p>© 2026, Маслова М.Б. | Синтетические данные</p>
+        </footer>
+    </div>
+</body>
+</html>
